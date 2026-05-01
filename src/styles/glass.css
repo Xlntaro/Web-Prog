@@ -1,0 +1,52 @@
+/* Glassmorphism effects and background */
+.background-shapes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.shape {
+    position: absolute;
+    filter: blur(80px);
+    border-radius: 50%;
+    animation: float 10s infinite alternate ease-in-out;
+}
+
+.shape-1 {
+    width: 300px; height: 300px;
+    background: rgba(59, 130, 246, 0.4);
+    top: 10%; left: 15%;
+}
+
+.shape-2 {
+    width: 400px; height: 400px;
+    background: rgba(139, 92, 246, 0.3);
+    bottom: 10%; right: 15%;
+    animation-delay: -5s;
+}
+
+.shape-3 {
+    width: 250px; height: 250px;
+    background: rgba(236, 72, 153, 0.3);
+    top: 40%; left: 60%;
+    animation-delay: -2s;
+}
+
+@keyframes float {
+    0% { transform: translateY(0) scale(1); }
+    100% { transform: translateY(-30px) scale(1.1); }
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    padding: 30px;
+}
