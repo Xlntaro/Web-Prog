@@ -1,0 +1,79 @@
+openapi: 3.0.0
+info:
+  title: Скарбничка API
+  description: API для управління транзакціями у додатку Трекер Витрат.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000/api
+    description: Локальний сервер розробки
+paths:
+  /transactions:
+    get:
+      summary: Отримати всі транзакції
+      description: Повертає масив усіх збережених транзакцій користувача.
+      responses:
+        '200':
+          description: Успішний запит. Повертає список транзакцій.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transaction'
+    post:
+      summary: Додати нову транзакцію
+      description: Створює новий запис про витрату.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTransaction'
+      responses:
+        '201':
+          description: Транзакцію успішно створено.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+        '400':
+          description: Невалідні дані запиту.
+
+components:
+  schemas:
+    Transaction:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1683456789000
+        text:
+          type: string
+          example: "Кава"
+        amount:
+          type: number
+          format: float
+          example: 65.00
+        category:
+          type: string
+          example: "Їжа"
+        date:
+          type: string
+          example: "01.05.2026"
+    NewTransaction:
+      type: object
+      required:
+        - text
+        - amount
+        - category
+      properties:
+        text:
+          type: string
+          example: "Кіно"
+        amount:
+          type: number
+          format: float
+          example: 200.00
+        category:
+          type: string
+          example: "Розваги"
